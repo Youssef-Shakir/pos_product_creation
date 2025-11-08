@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <!-- قالب الزر المخصص لإنشاء منتج في نقطة البيع -->
+    <t t-name="point_of_sale.ProductCreateButton">
+        <button class="control-button btn btn-light rounded-0 fw-bolder"
+                t-on-click="() => this.onClick()">
+            <i class="fa fa-pencil-square" role="img"
+               aria-label="إنشاء منتج" title="إنشاء منتج"/>
+            <span> </span>
+            <span>تعديل/إنشاء منتج</span>
+        </button>
+    </t>
+</templates>

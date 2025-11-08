@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="CreateProductPopup" owl="1">
+        <div class="popup product-line-popup" style="
+            max-width:720px; 
+            padding:25px; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            border-radius:14px; 
+            box-shadow:0 12px 28px rgba(0,0,0,0.2); 
+            background:#fff;
+        ">
+
+            <!-- Header -->
+            <div class="popup-header" style="margin-bottom:20px;">
+                <h3 style="
+                    font-size:1.5em; 
+                    margin:0; 
+                    font-weight:700; 
+                    color:#2c3e50;
+                ">
+                    إنشاء أو تعديل المنتج
+                    <i class="fa fa-times" style="
+                        float:right; 
+                        cursor:pointer; 
+                        color:#e74c3c;
+                        font-size:1.1em;
+                    " t-on-click="cancel"/>
+                </h3>
+            </div>
+
+            <!-- Body -->
+            <main class="popup-body" style="display:flex; flex-direction:column; gap:15px;">
+
+                <!-- Search / Autocomplete -->
+                <div style="position:relative; display:flex; flex-direction:column;">
+                    <label for="search_product" style="font-weight:600; margin-bottom:5px;">اسم / باركود</label>
+                    <input type="text" id="search_product" class="field_input" 
+                           placeholder="اكتب الاسم أو الباركود"
+                           style="
+                               padding:10px 12px;
+                               border-radius:8px;
+                               border:1px solid #ccc;
+                               font-size:1em;
+                               transition: border 0.2s;
+                           "
+                           t-on-input="(ev) => this._onSearchProduct(ev)"/>
+                    <div class="autocomplete-dropdown-container" style="
+                        position:absolute; 
+                        top:100%; 
+                        left:0; 
+                        right:0; 
+                        background:#fff;
+                        border:1px solid #ddd;
+                        border-radius:8px;
+                        box-shadow:0 5px 15px rgba(0,0,0,0.1);
+                        max-height:180px;
+                        overflow-y:auto;
+                        z-index:1000;
+                        margin-top:4px;
+                        display:none;
+                    "></div>
+                </div>
+                <div id="product_status_msg" style="
+                    margin-top:5px;
+                    font-size:1.1em;
+                    color:#ffffff;
+                    font-weight:800;
+                    background:#3498db;
+                    padding:6px 12px;
+                    border-radius:6px;
+                    text-align:center;
+                    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+                ">
+                    اكتب اسم أو باركود المنتج للبدء
+                </div>
+
+                <!-- General Info -->
+                <div style="display:flex; flex-direction:column;">
+                    <label for="display_name" style="font-weight:600; margin-bottom:5px;">الاسم</label>
+                    <input type="text" id="display_name" class="field_input" style="
+                        padding:10px 12px; border-radius:8px; border:1px solid #ccc; font-size:1em;
+                    "/>
+                </div>
+
+                <!-- Type & Pricing Row -->
+                <div style="display:flex; gap:12px;">
+                    <div style="flex:1; display:flex; flex-direction:column;">
+                        <label for="type" style="font-weight:600; margin-bottom:5px;">النوع</label>
+                        <select id="type" class="field_input" style="
+                            padding:10px 12px; border-radius:8px; border:1px solid #ccc; font-size:1em;
+                        ">
+                            <option value="product">منتج مخزن</option>
+                        </select>
+                    </div>
+                    <div style="flex:1; display:flex; flex-direction:column;">
+                        <label for="list_price" style="font-weight:600; margin-bottom:5px;">السعر</label>
+                        <input type="number" id="list_price" class="field_input" style="
+                            padding:10px 12px; border-radius:8px; border:1px solid #ccc; font-size:1em;
+                        "/>
+                    </div>
+                    <div style="flex:1; display:flex; flex-direction:column;">
+                        <label for="cost_price" style="font-weight:600; margin-bottom:5px;">التكلفة</label>
+                        <input type="number" id="cost_price" class="field_input" style="
+                            padding:10px 12px; border-radius:8px; border:1px solid #ccc; font-size:1em;
+                        "/>
+                    </div>
+                </div>
+
+                <!-- Barcode & Generate -->
+                <div style="display:flex; align-items:center; gap:10px;">
+                    <div style="flex:1; display:flex; flex-direction:column;">
+                        <label for="barcode" style="font-weight:600; margin-bottom:5px;">الباركود</label>
+                        <input type="text" id="barcode" class="field_input" style="
+                            padding:10px 12px; border-radius:8px; border:1px solid #ccc; font-size:1em;
+                        "/>
+                    </div>
+                    <button type="button" class="button o_pos_button" 
+                            t-on-click="(ev) => this._generateBarcode(ev)"
+                            style="
+                                padding:0 12px; 
+                                font-size:1em; 
+                                border-radius:8px; 
+                                height:42px; /* same as barcode input */
+                                background:#2ecc71;
+                                color:#fff;
+                                border:none;
+                                font-weight:600;
+                                box-shadow:0 2px 6px rgba(0,0,0,0.15);
+                                transition:all 0.2s;
+                            "
+                            onmouseover="this.style.background='#27ae60'" 
+                            onmouseout="this.style.background='#2ecc71'">
+                        توليد تلقائي
+                    </button>
+                </div>
+
+                <!-- Product Category & Tracking Row -->
+                <div style="display:flex; gap:12px;">
+                    <div style="flex:1; display:flex; flex-direction:column;">
+                        <label for="product_category" style="font-weight:600; margin-bottom:5px;">التصنيف</label>
+                        <select id="product_category" class="field_input" style="
+                            padding:10px 12px; border-radius:8px; border:1px solid #ccc; font-size:1em;">
+                            <t t-foreach="Object.values(env.services.pos.db.category_by_id)" t-as="category" t-key="category.id">
+                                <t t-if="category.name !== 'Root'">
+                                    <option t-att-value="category.id" t-att-title="category.name">
+                                        <t t-esc="category.name"/>
+                                    </option>
+                                </t>
+                            </t>
+                        </select>
+                    </div>
+                    <div style="flex:1; display:flex; flex-direction:column;">
+                        <label for="tracking_checkbox" style="font-weight:600; margin-bottom:5px;">التتبع</label>
+                        <input type="checkbox" id="tracking_checkbox" checked="checked"/>
+                        <span style="margin-left:6px;">تتبع حسب الدفعات مع انتهاء الصلاحية</span>
+                    </div>
+                </div>
+
+                <!-- Product Image -->
+                <div style="display:flex; flex-direction:column; margin-top:15px;">
+                    <label for="img_field" style="font-weight:600; margin-bottom:5px;">الصورة</label>
+                    <input type="file" id="img_field" class="field_input" 
+                           t-on-change="(ev) => this._onChangeImgField(ev)" accept="image/*"/>
+                    <div class="product-img-create-popup" style="margin-top:10px;">
+                        <img t-att-src="imageUrl" id="img_url_tag_create" style="max-width:150px; max-height:150px; border-radius:6px; box-shadow:0 2px 6px rgba(0,0,0,0.15)"/>
+                    </div>
+                </div>
+
+            </main>
+
+            <!-- Footer --> 
+            <footer class="popup-footer" style="display:flex; flex-direction:column; gap:10px; margin-top:20px;">
+                <div style="display:flex; gap:12px; justify-content:flex-end;">
+                    <button class="button o_pos_button" t-on-click="(ev) => this.confirm(ev)" style="
+                        background:#3498db; 
+                        color:#fff; 
+                        border-radius:10px; 
+                        font-weight:700; 
+                        font-size:1.1em;
+                        padding:12px 20px;
+                        flex:1;
+                    ">تأكيد</button>
+                    <button class="button o_pos_button" t-on-click="cancel" style="
+                        background:#95a5a6; 
+                        color:#fff; 
+                        border-radius:10px; 
+                        font-weight:700; 
+                        font-size:1.1em;
+                        padding:12px 20px;
+                        flex:1;
+                    ">إلغاء</button>
+                </div>
+                <div style="text-align:center; margin-top:10px; font-weight:600; font-size:0.95em; color:#555;">
+                    يوسف شاكر
+                </div>
+            </footer>
+
+        </div>
+    </t>
+</templates>
