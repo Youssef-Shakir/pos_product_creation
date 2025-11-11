@@ -1,0 +1,524 @@
+/*
+    POS Product Creation - Modern UI Styling
+    Author: Yousif Shakir
+    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+*/
+
+// ============================================================================
+// VARIABLES - Matching pos_modern_ui
+// ============================================================================
+
+$modern-primary: #4f46e5;
+$modern-primary-dark: #4338ca;
+$modern-success: #22c55e;
+$modern-success-dark: #16a34a;
+$modern-info: #06b6d4;
+$modern-info-dark: #0891b2;
+$modern-danger: #ef4444;
+$modern-bg-light: #f8fafc;
+$modern-bg-gray: #f1f5f9;
+$modern-border: #e2e8f0;
+$modern-text-dark: #1e293b;
+$modern-text-medium: #475569;
+$modern-text-light: #64748b;
+
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 12px;
+$spacing-lg: 16px;
+$spacing-xl: 20px;
+
+$radius-sm: 6px;
+$radius-md: 10px;
+$radius-lg: 14px;
+
+$shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
+$shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+$shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+$shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+
+// ============================================================================
+// PRODUCT CREATE BUTTON - MODERN STYLING
+// ============================================================================
+
+.pos {
+    // Product Create Button in POS Screen
+    .control-button.btn-light {
+        background: white !important;
+        color: $modern-text-dark !important;
+        border: 1px solid $modern-border !important;
+        border-radius: $radius-sm !important;
+        padding: $spacing-sm $spacing-lg !important;
+        font-size: 14px !important;
+        font-weight: 600 !important;
+        transition: all 0.2s ease !important;
+        box-shadow: $shadow-xs !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: $spacing-sm !important;
+
+        i.fa-pencil-square {
+            font-size: 16px !important;
+            color: $modern-primary !important;
+        }
+
+        &:hover {
+            background: $modern-bg-light !important;
+            border-color: $modern-primary !important;
+            transform: translateY(-1px) !important;
+            box-shadow: $shadow-sm !important;
+        }
+
+        &:active {
+            transform: translateY(0) !important;
+        }
+    }
+
+    // ========================================================================
+    // PRODUCT CREATE POPUP
+    // ========================================================================
+
+    .product-line-popup {
+        max-width: 650px !important;
+        padding: 0 !important;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+        border-radius: $radius-lg !important;
+        box-shadow: $shadow-lg !important;
+        background: white !important;
+        overflow: hidden !important;
+        direction: rtl !important;
+
+        // ====================================================================
+        // POPUP HEADER
+        // ====================================================================
+
+        .popup-header {
+            background: linear-gradient(135deg, $modern-primary 0%, $modern-primary-dark 100%) !important;
+            padding: $spacing-md $spacing-lg !important;
+            margin-bottom: 0 !important;
+
+            h3 {
+                font-size: 16px !important;
+                margin: 0 !important;
+                font-weight: 700 !important;
+                color: white !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: space-between !important;
+
+                i.fa-times {
+                    float: none !important;
+                    cursor: pointer !important;
+                    color: white !important;
+                    font-size: 16px !important;
+                    padding: $spacing-xs !important;
+                    border-radius: $radius-sm !important;
+                    transition: all 0.2s ease !important;
+
+                    &:hover {
+                        background: rgba(255, 255, 255, 0.2) !important;
+                    }
+                }
+            }
+        }
+
+        // ====================================================================
+        // POPUP BODY
+        // ====================================================================
+
+        .popup-body {
+            display: grid !important;
+            grid-template-columns: 1fr 1fr !important;
+            gap: $spacing-md !important;
+            padding: $spacing-lg !important;
+            background: $modern-bg-light !important;
+
+            // General Input Styling
+            label {
+                font-weight: 600 !important;
+                margin-bottom: $spacing-xs !important;
+                font-size: 13px !important;
+                color: $modern-text-dark !important;
+                display: block !important;
+            }
+
+            .field_input, input, select, textarea {
+                padding: $spacing-sm $spacing-md !important;
+                border-radius: $radius-sm !important;
+                border: 1px solid $modern-border !important;
+                font-size: 14px !important;
+                transition: all 0.2s ease !important;
+                background: white !important;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+
+                &:focus {
+                    outline: none !important;
+                    border-color: $modern-primary !important;
+                    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1) !important;
+                }
+
+                &:hover {
+                    border-color: #cbd5e0 !important;
+                }
+            }
+
+            // Full-width elements
+            > div:first-child, // Search field
+            > div:nth-child(2), // Status message
+            > div:has(#display_name), // Name field
+            > div:has(#barcode), // Barcode row with button
+            > div:has(#img_field) { // Image upload
+                grid-column: 1 / -1 !important;
+            }
+
+            // Product Status Message
+            #product_status_msg {
+                margin-top: 0 !important;
+                font-size: 13px !important;
+                color: white !important;
+                font-weight: 600 !important;
+                background: $modern-info !important;
+                padding: $spacing-sm $spacing-md !important;
+                border-radius: $radius-sm !important;
+                text-align: center !important;
+                box-shadow: $shadow-sm !important;
+                grid-column: 1 / -1 !important;
+            }
+
+            // Search/Autocomplete Container
+            .autocomplete-dropdown-container {
+                position: absolute !important;
+                top: 100% !important;
+                left: 0 !important;
+                right: 0 !important;
+                background: white !important;
+                border: 1px solid $modern-border !important;
+                border-radius: $radius-sm !important;
+                box-shadow: $shadow-md !important;
+                max-height: 200px !important;
+                overflow-y: auto !important;
+                z-index: 1000 !important;
+                margin-top: $spacing-xs !important;
+
+                .autocomplete-item {
+                    padding: $spacing-sm $spacing-md !important;
+                    cursor: pointer !important;
+                    transition: all 0.2s ease !important;
+                    border-bottom: 1px solid $modern-bg-gray !important;
+
+                    &:hover {
+                        background: $modern-bg-light !important;
+                        color: $modern-primary !important;
+                    }
+
+                    &:last-child {
+                        border-bottom: none !important;
+                    }
+                }
+            }
+
+            // Individual form field containers
+            > div {
+                display: flex !important;
+                flex-direction: column !important;
+            }
+
+            // Multi-column rows (Type & Pricing, Category & Tracking)
+            > div[style*="display:flex"][style*="gap"] {
+                grid-column: 1 / -1 !important;
+                display: flex !important;
+                flex-direction: row !important;
+                gap: $spacing-md !important;
+
+                > div {
+                    flex: 1 !important;
+                    display: flex !important;
+                    flex-direction: column !important;
+
+                    // Tracking checkbox container within the row
+                    &:has(#tracking_checkbox) {
+                        display: flex !important;
+                        flex-direction: column !important;
+                        justify-content: flex-end !important;
+
+                        label {
+                            margin-bottom: $spacing-xs !important;
+                        }
+
+                        input[type="checkbox"] {
+                            width: 18px !important;
+                            height: 18px !important;
+                            cursor: pointer !important;
+                            accent-color: $modern-primary !important;
+                            margin: 0 $spacing-xs 0 0 !important;
+                            vertical-align: middle !important;
+                        }
+
+                        span {
+                            vertical-align: middle !important;
+                            font-size: 13px !important;
+                            color: $modern-text-dark !important;
+                        }
+                    }
+                }
+            }
+
+            // Barcode row with generate button
+            > div[style*="align-items:center"] {
+                grid-column: 1 / -1 !important;
+                display: flex !important;
+                gap: $spacing-md !important;
+
+                > div {
+                    flex: 1 !important;
+                }
+
+                button.o_pos_button {
+                    padding: 0 $spacing-lg !important;
+                    font-size: 13px !important;
+                    border-radius: $radius-sm !important;
+                    height: auto !important;
+                    min-height: 38px !important;
+                    background: $modern-success !important;
+                    color: white !important;
+                    border: none !important;
+                    font-weight: 600 !important;
+                    box-shadow: 0 2px 8px rgba(34, 197, 94, 0.25) !important;
+                    transition: all 0.2s ease !important;
+                    align-self: flex-end !important;
+                    margin-top: 18px !important;
+                    white-space: nowrap !important;
+
+                    &:hover {
+                        background: $modern-success-dark !important;
+                        transform: translateY(-1px) !important;
+                        box-shadow: 0 4px 12px rgba(34, 197, 94, 0.35) !important;
+                    }
+
+                    &:active {
+                        transform: translateY(0) !important;
+                    }
+                }
+            }
+
+            // Checkbox styling with text alignment
+            > div:has(#tracking_checkbox) {
+                display: flex !important;
+                flex-direction: row !important;
+                align-items: center !important;
+                gap: $spacing-sm !important;
+
+                label {
+                    margin-bottom: 0 !important;
+                }
+
+                input[type="checkbox"] {
+                    width: 18px !important;
+                    height: 18px !important;
+                    cursor: pointer !important;
+                    accent-color: $modern-primary !important;
+                    margin: 0 !important;
+                    flex-shrink: 0 !important;
+                }
+
+                span {
+                    font-size: 13px !important;
+                    color: $modern-text-dark !important;
+                    line-height: 1.4 !important;
+                }
+            }
+
+            // Product Image section
+            > div[style*="margin-top:15px"] {
+                grid-column: 1 / -1 !important;
+                display: flex !important;
+                flex-direction: column !important;
+
+                .product-img-create-popup {
+                    margin-top: $spacing-sm !important;
+                    display: flex !important;
+                    justify-content: center !important;
+
+                    img {
+                        max-width: 120px !important;
+                        max-height: 120px !important;
+                        border-radius: $radius-sm !important;
+                        box-shadow: $shadow-sm !important;
+                        border: 2px solid $modern-border !important;
+                    }
+                }
+            }
+
+            // File input
+            input[type="file"] {
+                padding: $spacing-sm !important;
+                font-size: 13px !important;
+                cursor: pointer !important;
+
+                &::file-selector-button {
+                    background: $modern-bg-gray !important;
+                    color: $modern-text-dark !important;
+                    border: 1px solid $modern-border !important;
+                    border-radius: $radius-sm !important;
+                    padding: $spacing-xs $spacing-md !important;
+                    font-weight: 600 !important;
+                    cursor: pointer !important;
+                    margin-right: $spacing-sm !important;
+                    transition: all 0.2s ease !important;
+                    font-size: 13px !important;
+
+                    &:hover {
+                        background: #e2e8f0 !important;
+                    }
+                }
+            }
+        }
+
+        // ====================================================================
+        // POPUP FOOTER
+        // ====================================================================
+
+        .popup-footer {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: $spacing-sm !important;
+            margin-top: 0 !important;
+            padding: $spacing-md $spacing-lg !important;
+            background: white !important;
+            border-top: 1px solid $modern-border !important;
+
+            // Button Container
+            > div:first-child {
+                display: flex !important;
+                gap: $spacing-md !important;
+                justify-content: flex-end !important;
+
+                button {
+                    flex: 1 !important;
+                    padding: $spacing-sm $spacing-lg !important;
+                    border-radius: $radius-sm !important;
+                    font-weight: 600 !important;
+                    font-size: 14px !important;
+                    border: none !important;
+                    cursor: pointer !important;
+                    transition: all 0.2s ease !important;
+
+                    // Confirm Button
+                    &:first-child {
+                        background: $modern-success !important;
+                        color: white !important;
+                        box-shadow: 0 2px 8px rgba(34, 197, 94, 0.25) !important;
+
+                        &:hover {
+                            background: $modern-success-dark !important;
+                            transform: translateY(-1px) !important;
+                            box-shadow: 0 4px 12px rgba(34, 197, 94, 0.35) !important;
+                        }
+                    }
+
+                    // Cancel Button
+                    &:last-child {
+                        background: $modern-bg-gray !important;
+                        color: $modern-text-medium !important;
+                        box-shadow: $shadow-xs !important;
+
+                        &:hover {
+                            background: #e2e8f0 !important;
+                            color: $modern-text-dark !important;
+                            transform: translateY(-1px) !important;
+                        }
+                    }
+
+                    &:active {
+                        transform: translateY(0) !important;
+                    }
+                }
+            }
+
+            // Developer Info - Footer
+            > div:last-child {
+                text-align: center !important;
+                margin-top: 0 !important;
+                font-weight: 600 !important;
+                font-size: 13px !important;
+                color: $modern-text-medium !important;
+                padding: $spacing-sm $spacing-md !important;
+                background: linear-gradient(135deg, $modern-bg-light 0%, $modern-bg-gray 100%) !important;
+                border-radius: $radius-sm !important;
+                border: 1px solid $modern-border !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                gap: $spacing-xs !important;
+
+                &:before {
+                    content: "👨‍💻" !important;
+                    font-size: 14px !important;
+                }
+            }
+        }
+    }
+}
+
+// ============================================================================
+// RESPONSIVE DESIGN
+// ============================================================================
+
+@media (max-width: 768px) {
+    .pos .product-line-popup {
+        max-width: 95% !important;
+        margin: $spacing-sm !important;
+
+        .popup-body {
+            grid-template-columns: 1fr !important;
+            padding: $spacing-md !important;
+            gap: $spacing-sm !important;
+
+            > div[style*="display:flex"][style*="gap"] {
+                flex-direction: column !important;
+                gap: $spacing-sm !important;
+            }
+
+            > div[style*="align-items:center"] {
+                flex-direction: column !important;
+                align-items: stretch !important;
+
+                button.o_pos_button {
+                    margin-top: $spacing-sm !important;
+                    width: 100% !important;
+                }
+            }
+        }
+
+        .popup-footer {
+            padding: $spacing-md !important;
+
+            > div:first-child {
+                flex-direction: column !important;
+
+                button {
+                    width: 100% !important;
+                }
+            }
+        }
+    }
+}
+
+// ============================================================================
+// ANIMATIONS
+// ============================================================================
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.pos .product-line-popup {
+    animation: fadeIn 0.3s ease !important;
+}

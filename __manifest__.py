@@ -32,6 +32,7 @@
     'depends': ['point_of_sale'],
     'assets': {
         'point_of_sale._assets_pos': [
+            'pos_product_creation/static/src/scss/product_create_popup.scss',
             'pos_product_creation/static/src/js/pos_product_screen.js',
             'pos_product_creation/static/src/js/product_create_popup.js',
             'pos_product_creation/static/src/xml/product_create_button_templates.xml',
