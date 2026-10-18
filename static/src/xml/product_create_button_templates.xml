@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates id="template" xml:space="preserve">
-    <!-- قالب الزر المخصص لإنشاء منتج في نقطة البيع -->
-    <t t-name="point_of_sale.ProductCreateButton">
-        <button class="control-button btn btn-light rounded-0 fw-bolder"
-                t-on-click="() => this.onClick()">
-            <i class="fa fa-pencil-square" role="img"
-               aria-label="إنشاء منتج" title="إنشاء منتج"/>
-            <span> </span>
-            <span>تعديل/إنشاء منتج</span>
-        </button>
+    <!-- Extend ControlButtons to add Product Create button -->
+    <t t-name="pos_product_creation.ControlButtons"
+       t-inherit="point_of_sale.ControlButtons"
+       t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('control-buttons')]" position="inside">
+            <button class="btn btn-secondary btn-lg py-3 control-button"
+                    t-on-click="() => this.onClickProductCreate()">
+                <i class="fa fa-pencil-square me-1" role="img"
+                   aria-label="إنشاء منتج" title="إنشاء منتج"/>
+                <span>تعديل/إنشاء منتج</span>
+            </button>
+        </xpath>
     </t>
 </templates>

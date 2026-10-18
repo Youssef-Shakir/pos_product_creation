@@ -21,7 +21,7 @@
 ###############################################################################
 {
     'name': 'POS Product Creation Popup Module',
-    'version': '17.0.1.0.0',
+    'version': '18.0.1.0.0',
     'category': 'Point of Sale',
     'summary': 'create or edit products directly from the POS interface',
     'description': """This Odoo POS module adds a custom popup that allows users to create or edit products directly from the POS interface without leaving the session. It streamlines product management, including setting pricing, barcode, image, POS category, and tracking options.""",

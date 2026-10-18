@@ -41,7 +41,7 @@ $shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
 // PRODUCT CREATE BUTTON - MODERN STYLING
 // ============================================================================
 
-.pos {
+.pos, .o_dialog {
     // Product Create Button in POS Screen
     .control-button.btn-light {
         background: white !important;
@@ -521,4 +521,84 @@ $shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
 
 .pos .product-line-popup {
     animation: fadeIn 0.3s ease !important;
+}
+
+// ============================================================================
+// ODOO 18 DIALOG-BASED POPUP STYLES
+// ============================================================================
+
+.o_dialog .product-create-popup {
+    direction: rtl !important;
+
+    main {
+        label {
+            font-weight: 600 !important;
+            margin-bottom: $spacing-xs !important;
+            font-size: 13px !important;
+            color: $modern-text-dark !important;
+            display: block !important;
+        }
+
+        .form-control {
+            padding: $spacing-sm $spacing-md !important;
+            border-radius: $radius-sm !important;
+            border: 1px solid $modern-border !important;
+            font-size: 14px !important;
+            transition: all 0.2s ease !important;
+            background: white !important;
+
+            &:focus {
+                outline: none !important;
+                border-color: $modern-primary !important;
+                box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1) !important;
+            }
+        }
+
+        #product_status_msg {
+            background: $modern-info !important;
+            margin-top: $spacing-xs !important;
+        }
+
+        .autocomplete-dropdown-container {
+            div {
+                &:hover {
+                    background: $modern-bg-light !important;
+                    color: $modern-primary !important;
+                }
+            }
+        }
+
+        .product-img-create-popup {
+            display: flex !important;
+            justify-content: center !important;
+
+            img {
+                border: 2px solid $modern-border !important;
+            }
+        }
+    }
+
+    footer {
+        .btn-primary {
+            background: $modern-success !important;
+            border-color: $modern-success !important;
+            box-shadow: 0 2px 8px rgba(34, 197, 94, 0.25) !important;
+
+            &:hover {
+                background: $modern-success-dark !important;
+                border-color: $modern-success-dark !important;
+            }
+        }
+
+        .btn-secondary {
+            background: $modern-bg-gray !important;
+            color: $modern-text-medium !important;
+            border-color: $modern-border !important;
+
+            &:hover {
+                background: #e2e8f0 !important;
+                color: $modern-text-dark !important;
+            }
+        }
+    }
 }
